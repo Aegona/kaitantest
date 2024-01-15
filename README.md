@@ -1,94 +1,24 @@
-local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/kickTh/New-Ui/main/SolarisLib.lua.txt"))()
 
---[[SolarisLib:New({
-  Name - Title of the UI <string>
-  FolderToSave - Name of the folder where the UI files will be stored <string>
-})]]
-local win = SolarisLib:New({
-  Name = "AEGONA X HUB",
-  FolderToSave = "Gui"
-})
-
---win:Tab(title <string>)
-local tab = win:Tab("Tab 1")
-
---tab:Section(title <string>)
-local sec = tab:Section("Farm")
-
-
-
---sec:Toggle(title <string>,default <boolean>, flag <string>, callback <function>)
-local toggle = sec:Toggle("AutoFarm", false,"Toggle", function(t)
-  _G.Farm = t
-  _G.BringMob = t
-end)
+  _G.Farm = true
+  _G.BringMob = true
 
 
 
 
-local label = sec:Label("Setting")
 
-local toggle = sec:Toggle("FastAttack", false,"Toggle", function(t)
 
-(getgenv()).Config = {
- ["FastAttack"] = t,
- ["ClickAttack"] = t
-} 
-
-coroutine.wrap(function()
-local StopCamera = require(game.ReplicatedStorage.Util.CameraShaker)StopCamera:Stop()
-    for v,v in pairs(getreg()) do
-        if typeof(v) == "function" and getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework then
-             for v,v in pairs(debug.getupvalues(v)) do
-                if typeof(v) == "table" then
-                    spawn(function()
-                        game:GetService("RunService").RenderStepped:Connect(function()
-                            if getgenv().Config['FastAttack'] then
-                                 pcall(function()
-                                     v.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
-                                     v.activeController.attacking = false
-                                     v.activeController.increment = 4
-                                     v.activeController.blocking = false   
-                                     v.activeController.hitboxMagnitude = 150
-    		                         v.activeController.humanoid.AutoRotate = true
-    	                      	     v.activeController.focusStart = 0
-    	                      	     v.activeController.currentAttackTrack = 0
-                                     sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRaxNerous", math.huge)
-                                 end)
-                             end
-                         end)
-                    end)
-                end
-            end
-        end
-    end
-end)();
-
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if getgenv().Config['ClickAttack'] then
-             pcall(function()
-                game:GetService'VirtualUser':CaptureController()
-			    game:GetService'VirtualUser':Button1Down(Vector2.new(0,1,0,1))
-            end)
-        end
-    end)
-end)
-end)
-	
-	
 	
 
 function CheckQuest()
    local Lv =  game.Players.LocalPlayer.Data.Level.Value
    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-   elseif  Lv == 2399 or Lv <= 999999 then
-       Ms = "Candy Rebel [Lv. 2375]"
-       CQ = CFrame.new(145.3926544189453, 24.79692268371582, -12777.1083984375)
-       CM = CFrame.new(69.21019744873047, 24.79688262939453, -12967.568359375)
-       NQ = "ChocQuest2"
-       NM = "Candy Rebel"
-       LQ = 2
+   elseif  Lv == 1 or Lv <= 9 then
+       Ms = "Bandit [Lv. 5]"
+       CQ = CFrame.new(1061.15271, 16.7367725, 1548.93018, -0.836085379, -3.89774577e-08, 0.548599303, -1.17575967e-08, 1, 5.31300408e-08, -0.548599303, 3.79710414e-08, -0.836085379)
+       CM = CFrame.new(1151.11829, 16.7761021, 1599.73499, -0.999999762, 0, -0.000701809535, 0, 1, 0, 0.000701809535, 0, -0.999999762)
+       NQ = "BanditQuest1"
+       NM = "Bandit"
+       LQ = 1
 end
 end
 
