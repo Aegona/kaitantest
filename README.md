@@ -4,7 +4,7 @@ function CheckQuest()
     local Lv =  game.Players.LocalPlayer.Data.Level.Value
     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
     elseif  Lv == 1 or Lv <= 9 then
-        Ms = "Bandit"
+        Ms = "Bandit [Lv. 5]"
         CQ = CFrame.new(1059.838623046875, 16.516624450683594, 1545.941162109375)
         CM = CFrame.new(1177.2108154296875, 16.43285369873047, 1616.587646484375)
         NQ = "BanditQuest1"
@@ -514,6 +514,8 @@ function CheckQuest()
                  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NQ,LQ)
                  
              elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+
+                TP(CM)
                  for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                     TP(CM)
                      if v.Name == Ms then
@@ -523,7 +525,7 @@ function CheckQuest()
                          wait(.1)
                          posmon = v.HumanoidRootPart.CFrame
                          
-                         TP(v.HumanoidRootPart.CFrame * CFrame.new(0,25,0))
+                         TP(v.HumanoidRootPart.CFrame)
                          end
                      end
                  end
