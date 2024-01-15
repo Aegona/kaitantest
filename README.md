@@ -1,34 +1,124 @@
-_G.AutoFarm = true
-_G.BringMob = true
 
-
-function CheckQuest()
-    local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
-    if Lv == 1 or Lv <= 9 then
-        Mon = "Bandit [Lv. 5]"
-        NameMon = "Bandit"
-        LvQuest = 1
-        NameQuest = "BanditQuest1"
-        CFrameMon = CFrame.new(1038.2711181640625, 24.537282943725586, 1550.2586669921875)
-        CFrameQuest = CFrame.new(1059.8109130859375, 16.362747192382812, 1549.0882568359375)
-    elseif Lv == 10 or Lv <= 14 then
-        Mon = "Monkey [Lv. 14]"
-        NameMon = "Monkey"
-        LvQuest = 1
-        NameQuest = "JungleQuest"
-        CFrameMon = CFrame.new(-1443.7662353515625, 61.851966857910156, -47.555946350097656)
-        CFrameQuest = CFrame.new(-1599.8194580078125, 36.852149963378906, 153.0706024169922)
-        elseif Lv == 15 or Lv <= 29 then
-        Mon = "Gorilla [Lv. 20]"
-        NameMon = "Gorilla"
-        LvQuest = 2
-        NameQuest = "JungleQuest"
-        CFrameMon = CFrame.new(-1443.7662353515625, 61.851966857910156, -47.555946350097656)
-        CFrameQuest = CFrame.new(-1599.8194580078125, 36.852149963378906, 153.0706024169922) 
-     end
+    print("HelloGuy")
+    
+    function CheckQuest()
+        local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
+            if Lv == 1 or Lv <= 9 then
+                Mon = "Bandit [Lv. 5]"
+                NameMon = "Bandit"
+                LvQuest = 1
+                NameQuest = "BanditQuest1"
+                CFrameMon = CFrame.new(1038.2711181640625, 24.537282943725586, 1550.2586669921875)
+                CFrameQuest = CFrame.new(1059.8109130859375, 16.362747192382812, 1549.0882568359375)
+            elseif Lv == 10 or Lv <= 14 then
+                Mon = "Monkey [Lv. 14]"
+                NameMon = "Monkey"
+                LvQuest = 1
+                NameQuest = "JungleQuest"
+                CFrameMon = CFrame.new(-1443.7662353515625, 61.851966857910156, -47.555946350097656)
+                CFrameQuest = CFrame.new(-1599.8194580078125, 36.852149963378906, 153.0706024169922)
+                elseif Lv == 15 or Lv <= 29 then
+                Mon = "Gorilla [Lv. 20]"
+                NameMon = "Gorilla"
+                LvQuest = 2
+                NameQuest = "JungleQuest"
+                CFrameMon = CFrame.new(-1443.7662353515625, 61.851966857910156, -47.555946350097656)
+                CFrameQuest = CFrame.new(-1599.8194580078125, 36.852149963378906, 153.0706024169922) 
+        end 
+    end
+    local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/XeNonUi", true))()
+    library:CreateWatermark("NOOB HUB") -- Config แตกนะเดียวค่อยแก้รอเน็ตมาก่อน By MeowX#0001
+    local CenterHubNo1 = library:CreateWindow("NOOB HUB | BLOX FRUIT",Enum.KeyCode.RightControl)
+    local Tab = CenterHubNo1:CreateTab("Main")
+    local AutoFarm = Tab:CreateSector("AutoFarm","Left")
+    AutoFarm:AddLabel("AutoFarm Lv")
+    Weapon = {}
+    for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA"Tool" then
+            table.insert(Weapon,v.Name)
+    end
+end
+    local WE = AutoFarm:AddDropdown("Select Weapon",Weapon,"Select Weapon",false,function(t)
+        _G.SelectWeapon = t
+    end)
+function Equip(ToolX)
+    if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(ToolX) then
+        getgenv().Tol = game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(ToolX)
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(Tol)
+    end
+end
+function click()
+   game:GetService'VirtualUser':CaptureController()
+   game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+end
+ function TP(P)
+   local Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- จุดที่จะไป Position Only
+   local Speed = 300 -- ความเร็วของมึง
+   tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
+   tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = P})
+   tween:Play()
  end
+         AutoFarm:AddButton("ReSet Weapon",function()
+        table.clear(Weapon)
+        for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA"Tool" then
+        WE:Add(v.Name)
+        end
+    end
+end)
+    AutoFarm:AddToggle("BringMob",false,function(t)
+        _G.BringMob = t
+    end)
+    AutoFarm:AddToggle("AutoFarm",false,function(t)
+        _G.AutoFarm = t
+    end)
+local Stats = Tab:CreateSector("Stats","Reft")
+Stats:AddLabel("Stats")
+Stats:AddToggle("Auto Melee",false,function(t)
+_G.Melee = t
+while _G.Melee do wait(.1)
+pcall(function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Melee",Point)
+end)
+end
+end)
+Stats:AddToggle("Auto Defense",false,function(t)
+_G.Defense = t
+while _G.Defense do wait(.1)
+pcall(function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Defense",Point)
+end)
+end
+end)
+Stats:AddToggle("Auto Sword",false,function(t)
+_G.Sword = t
+while _G.Sword do wait(.1)
+pcall(function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Sword",Point)
+end)
+end
+end)
+Stats:AddToggle("Auto Gun",false,function(t)
+_G.Gun = t
+while _G.Gun do wait(.1)
+pcall(function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Gun",Point)
+end)
+end
+end)
+Stats:AddToggle("Auto Blox Fruit",false,function(t)
+_G.Fruit = t
+while _G.Fruit do wait(.1)
+pcall(function()
+game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Demon Fruit",Point)
+end)
+end
+end)
+Stats:AddSlider("Point",1,1,100,1,function(x)
+Point = x
+end)
 
-spawn(function()
+    spawn(function()
     while wait() do
         if _G.BringMob then
             pcall(function()
