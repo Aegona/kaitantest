@@ -518,8 +518,6 @@ function CheckQuest()
                 TP(CM)
                  for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                     TP(CM)
-                    posmon = v.HumanoidRootPart.CFrame
-                    posmon * CFrame.new(0,0,9)
                     print("1")
                     v.HumanoidRootPart.CFrame = CM * CFrame.new(0,0,20)
                     wait(1)
