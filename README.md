@@ -519,9 +519,6 @@ function CheckQuest()
                  for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
                     TP(CM)
                     print("1")
-                    v.HumanoidRootPart.CFrame = CM * CFrame.new(0,0,20)
-                    wait(1)
-                    TP(v.HumanoidRootPart.CFrame)
                      if v.Name == Ms then
                         print("FINT")
                          posmon = v.HumanoidRootPart.CFrame
