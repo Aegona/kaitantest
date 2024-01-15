@@ -1,5 +1,10 @@
 
     print("HelloGuy")
+
+        _G.BringMob = true
+
+
+        _G.AutoFarm = true
     
     function CheckQuest()
         local Lv = game:GetService("Players").LocalPlayer.Data.Level.Value
@@ -26,21 +31,8 @@
                 CFrameQuest = CFrame.new(-1599.8194580078125, 36.852149963378906, 153.0706024169922) 
         end 
     end
-    local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/naypramx/Ui__Project/Script/XeNonUi", true))()
-    library:CreateWatermark("NOOB HUB") -- Config แตกนะเดียวค่อยแก้รอเน็ตมาก่อน By MeowX#0001
-    local CenterHubNo1 = library:CreateWindow("NOOB HUB | BLOX FRUIT",Enum.KeyCode.RightControl)
-    local Tab = CenterHubNo1:CreateTab("Main")
-    local AutoFarm = Tab:CreateSector("AutoFarm","Left")
-    AutoFarm:AddLabel("AutoFarm Lv")
-    Weapon = {}
-    for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-        if v:IsA"Tool" then
-            table.insert(Weapon,v.Name)
-    end
-end
-    local WE = AutoFarm:AddDropdown("Select Weapon",Weapon,"Select Weapon",false,function(t)
-        _G.SelectWeapon = t
-    end)
+   
+
 function Equip(ToolX)
     if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(ToolX) then
         getgenv().Tol = game:GetService("Players").LocalPlayer.Backpack:FindFirstChild(ToolX)
@@ -58,65 +50,12 @@ end
    tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = P})
    tween:Play()
  end
-         AutoFarm:AddButton("ReSet Weapon",function()
-        table.clear(Weapon)
-        for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-        if v:IsA"Tool" then
-        WE:Add(v.Name)
-        end
-    end
-end)
-    AutoFarm:AddToggle("BringMob",false,function(t)
-        _G.BringMob = t
-    end)
-    AutoFarm:AddToggle("AutoFarm",false,function(t)
-        _G.AutoFarm = t
-    end)
-local Stats = Tab:CreateSector("Stats","Reft")
-Stats:AddLabel("Stats")
-Stats:AddToggle("Auto Melee",false,function(t)
-_G.Melee = t
-while _G.Melee do wait(.1)
-pcall(function()
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Melee",Point)
-end)
-end
-end)
-Stats:AddToggle("Auto Defense",false,function(t)
-_G.Defense = t
-while _G.Defense do wait(.1)
-pcall(function()
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Defense",Point)
-end)
-end
-end)
-Stats:AddToggle("Auto Sword",false,function(t)
-_G.Sword = t
-while _G.Sword do wait(.1)
-pcall(function()
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Sword",Point)
-end)
-end
-end)
-Stats:AddToggle("Auto Gun",false,function(t)
-_G.Gun = t
-while _G.Gun do wait(.1)
-pcall(function()
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Gun",Point)
-end)
-end
-end)
-Stats:AddToggle("Auto Blox Fruit",false,function(t)
-_G.Fruit = t
-while _G.Fruit do wait(.1)
-pcall(function()
-game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AddPoint","Demon Fruit",Point)
-end)
-end
-end)
-Stats:AddSlider("Point",1,1,100,1,function(x)
-Point = x
-end)
+
+
+
+
+
+
 
     spawn(function()
     while wait() do
