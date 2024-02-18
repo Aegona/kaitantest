@@ -527,7 +527,7 @@ function CheckQuest()
                          wait(.1)
                          posmon = v.HumanoidRootPart.CFrame
                          
-                         TP(v.HumanoidRootPart.CFrame)
+                         TP(posmon)
                          end
                      end
                  end
@@ -575,19 +575,7 @@ function CheckQuest()
      end
  end)
  
- 
-              while _G.BringMob do wait()
-             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                  for i2,v2 in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                     if v.Name == MON and v2.Name == MON then
-                         v2.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame
-                         v2.HumanoidRootPart.CanCollide = false
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * Method
-                             sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
-                     end
-                  end
-             end
-              end
+
               
  
  tgls:Button("ReedemAllCode", function()
